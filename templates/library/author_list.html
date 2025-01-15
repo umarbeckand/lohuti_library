@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}Авторы - Библиотека имени А. Лохути{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section">
+    <div class="container">
+        <h1>Авторы</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'library:home' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Авторы</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Authors Section -->
+<section class="section bg-light">
+    <div class="container">
+        <!-- Search Box -->
+        <div class="search-box">
+            <form action="{% url 'library:author_list' %}" method="get">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Поиск автора по имени или фамилии..." value="{{ query }}">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-search me-2"></i>Найти
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Results Count -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <p class="mb-0">
+                <i class="bi bi-people me-2"></i>
+                Найдено авторов: <strong>{{ page_obj.paginator.count }}</strong>
+            </p>
+            {% if query %}
+            <a href="{% url 'library:author_list' %}" class="btn btn-sm btn-outline-secondary">
+                <i class="bi bi-x-circle me-2"></i>Сбросить поиск
+            </a>
+            {% endif %}
+        </div>
+        
+        <!-- Authors Grid -->
+        <div class="row g-4">
+            {% for author in page_obj %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            {% if author.photo %}
+                            <img src="{{ author.photo.url }}" alt="{{ author.get_full_name }}" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;">
+                            {% else %}
+                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto" style="width: 120px; height: 120px;">
+                                <i class="bi bi-person text-muted" style="font-size: 3rem;"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <h5 class="card-title">{{ author.get_full_name }}</h5>
+                        {% if author.birth_year %}
+                        <p class="text-muted mb-2">
+                            <i class="bi bi-calendar me-2"></i>{{ author.birth_year }}{% if author.death_year %} - {{ author.death_year }}{% endif %}
+                        </p>
+                        {% endif %}
+                        <p class="text-muted mb-3">
+                            <i class="bi bi-book me-2"></i>{{ author.books.count }} книг
+                        </p>
+                        <a href="{% url 'library:author_detail' author.pk %}" class="btn btn-primary btn-sm">
+                            <i class="bi bi-eye me-2"></i>Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="empty-state">
+                    <i class="bi bi-people"></i>
+                    <h4>Авторы не найдены</h4>
+                    <p>Попробуйте изменить параметры поиска</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+        <nav class="mt-5">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-chevron-left"></i></span>
+                </li>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-chevron-right"></i></span>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

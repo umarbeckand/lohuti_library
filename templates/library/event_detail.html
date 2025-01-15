@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.title }} - Библиотека имени А. Лохути{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section">
+    <div class="container">
+        <h1>{{ event.title }}</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'library:home' %}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'library:events_list' %}">Мероприятия</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ event.title|truncatewords:5 }}</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Event Detail Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    {% if event.image %}
+                    <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                    {% endif %}
+                    <div class="card-body p-4 p-lg-5">
+                        <!-- Event Info -->
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="event-date-box me-3" style="min-width: 80px;">
+                                        <span class="day">{{ event.event_date|date:"d" }}</span>
+                                        <span class="month">{{ event.event_date|date:"M" }}</span>
+                                    </div>
+                                    <div>
+                                        <p class="mb-1">
+                                            <i class="bi bi-calendar me-2" style="color: var(--gold);"></i>
+                                            <strong>{{ event.event_date|date:"l, d.m.Y" }}</strong>
+                                        </p>
+                                        <p class="mb-0">
+                                            <i class="bi bi-clock me-2" style="color: var(--gold);"></i>
+                                            {{ event.event_date|date:"H:i" }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-0">
+                                    <i class="bi bi-geo-alt me-2" style="color: var(--gold);"></i>
+                                    <strong>{{ event.location }}</strong>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Title -->
+                        <h2 class="mb-4">{{ event.title }}</h2>
+                        
+                        <!-- Description -->
+                        <div class="event-content">
+                            {{ event.description|linebreaks }}
+                        </div>
+                        
+                        <!-- Actions -->
+                        <hr class="my-4">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <a href="{% url 'library:events_list' %}" class="btn btn-outline-primary">
+                                <i class="bi bi-arrow-left me-2"></i>Все мероприятия
+                            </a>
+                            <div class="d-flex gap-2">
+                                <span class="text-muted me-2">Поделиться:</span>
+                                <a href="#" class="btn btn-outline-primary btn-sm" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-telegram"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" style="background: linear-gradient(135deg, var(--navy) 0%, var(--primary-color) 100%);">
+    <div class="container text-center text-white">
+        <h2 class="mb-4" style="color: white;">Не пропустите другие мероприятия</h2>
+        <p class="lead mb-4">Следите за нашими новостями и будьте в курсе всех событий</p>
+        <a href="{% url 'library:news_list' %}" class="btn btn-primary btn-lg">
+            <i class="bi bi-newspaper me-2"></i>Новости библиотеки
+        </a>
+    </div>
+</section>
+{% endblock %}

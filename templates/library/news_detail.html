@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ news_item.title }} - Библиотека имени А. Лохути{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section">
+    <div class="container">
+        <h1>{{ news_item.title }}</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'library:home' %}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'library:news_list' %}">Новости</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ news_item.title|truncatewords:5 }}</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- News Detail Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    {% if news_item.image %}
+                    <img src="{{ news_item.image.url }}" class="card-img-top" alt="{{ news_item.title }}">
+                    {% endif %}
+                    <div class="card-body p-4 p-lg-5">
+                        <!-- Date -->
+                        <div class="news-date mb-3">
+                            <i class="bi bi-calendar3 me-2"></i>{{ news_item.published_at|date:"d.m.Y" }}
+                            <span class="mx-2">|</span>
+                            <i class="bi bi-clock me-2"></i>{{ news_item.published_at|date:"H:i" }}
+                        </div>
+                        
+                        <!-- Title -->
+                        <h2 class="mb-4">{{ news_item.title }}</h2>
+                        
+                        <!-- Content -->
+                        <div class="news-content">
+                            {{ news_item.content|linebreaks }}
+                        </div>
+                        
+                        <!-- Share -->
+                        <hr class="my-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted">Поделиться:</span>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-primary btn-sm" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-telegram"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Back Button -->
+                <div class="text-center mt-4">
+                    <a href="{% url 'library:news_list' %}" class="btn btn-outline-primary btn-lg">
+                        <i class="bi bi-arrow-left me-2"></i>Все новости
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

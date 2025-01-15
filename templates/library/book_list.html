@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block title %}Каталог книг - Библиотека имени А. Лохути{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section">
+    <div class="container">
+        <h1>Каталог книг</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'library:home' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Каталог</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Books Section -->
+<section class="section bg-light">
+    <div class="container">
+        <!-- Search Box -->
+        <div class="search-box">
+            <form action="{% url 'library:book_list' %}" method="get">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Поиск по названию, автору или ISBN..." value="{{ query }}">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-search me-2"></i>Найти
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Filter Tags -->
+        <div class="filter-tags">
+            <a href="{% url 'library:book_list' %}" class="filter-tag {% if not selected_category %}active{% endif %}">Все</a>
+            {% for category in categories %}
+            <a href="?category={{ category.slug }}{% if query %}&q={{ query }}{% endif %}" class="filter-tag {% if selected_category == category.slug %}active{% endif %}">
+                {{ category.name }}
+            </a>
+            {% endfor %}
+        </div>
+        
+        <!-- Results Count -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <p class="mb-0">
+                <i class="bi bi-bookshelf me-2"></i>
+                Найдено книг: <strong>{{ page_obj.paginator.count }}</strong>
+            </p>
+            {% if query %}
+            <a href="{% url 'library:book_list' %}" class="btn btn-sm btn-outline-secondary">
+                <i class="bi bi-x-circle me-2"></i>Сбросить фильтры
+            </a>
+            {% endif %}
+        </div>
+        
+        <!-- Books Grid -->
+        <div class="row g-4">
+            {% for book in page_obj %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card book-card h-100">
+                    <div class="card-img-wrapper">
+                        {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" class="card-img-top" alt="{{ book.title }}">
+                        {% else %}
+                        <div class="d-flex flex-column align-items-center justify-content-center h-100 bg-light p-3">
+                            <i class="bi bi-book text-muted mb-2" style="font-size: 3rem;"></i>
+                            <small class="text-muted text-center">{{ book.title|truncatewords:4 }}</small>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title|truncatewords:6 }}</h5>
+                        <p class="book-author">
+                            {% for author in book.authors.all %}
+                                {{ author.get_full_name }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                <span class="text-muted">Автор не указан</span>
+                            {% endfor %}
+                        </p>
+                        {% if book.category %}
+                        <p class="mb-2">
+                            <span class="badge bg-light text-dark">
+                                <i class="bi bi-folder me-1"></i>{{ book.category.name }}
+                            </span>
+                        </p>
+                        {% endif %}
+                        <span class="book-status {% if book.is_available %}available{% else %}borrowed{% endif %}">
+                            {% if book.is_available %}
+                                <i class="bi bi-check-circle me-1"></i>В наличии ({{ book.available_quantity }})
+                            {% else %}
+                                <i class="bi bi-x-circle me-1"></i>Выдана
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'library:book_detail' book.slug %}" class="btn btn-primary btn-sm w-100">
+                            <i class="bi bi-eye me-2"></i>Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="empty-state">
+                    <i class="bi bi-inbox"></i>
+                    <h4>Книги не найдены</h4>
+                    <p>Попробуйте изменить параметры поиска или посмотрите все книги</p>
+                    <a href="{% url 'library:book_list' %}" class="btn btn-primary mt-3">
+                        <i class="bi bi-bookshelf me-2"></i>Все книги
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+        <nav class="mt-5">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-chevron-left"></i></span>
+                </li>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">{{ num }}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-chevron-right"></i></span>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section bg-white">
+    <div class="container text-center">
+        <h2 class="mb-4">Не нашли нужную книгу?</h2>
+        <p class="lead mb-4">Свяжитесь с нами, и мы поможем вам найти необходимое издание</p>
+        <a href="{% url 'library:contact' %}" class="btn btn-primary btn-lg">
+            <i class="bi bi-envelope me-2"></i>Связаться с нами
+        </a>
+    </div>
+</section>
+{% endblock %}

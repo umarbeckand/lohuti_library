@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block title %}Мероприятия - Библиотека имени А. Лохути{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section">
+    <div class="container">
+        <h1>Мероприятия</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'library:home' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Мероприятия</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Events Section -->
+<section class="section bg-light">
+    <div class="container">
+        <!-- Results Count -->
+        <div class="mb-4">
+            <p class="mb-0">
+                <i class="bi bi-calendar-event me-2"></i>
+                Всего мероприятий: <strong>{{ page_obj.paginator.count }}</strong>
+            </p>
+        </div>
+        
+        <!-- Events List -->
+        <div class="row g-4">
+            {% for event in page_obj %}
+            <div class="col-lg-6">
+                <div class="card event-card h-100">
+                    {% if event.image %}
+                    <div class="event-image" style="min-width: 200px;">
+                        <img src="{{ event.image.url }}" alt="{{ event.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    {% else %}
+                    <div class="event-date-box">
+                        <span class="day">{{ event.event_date|date:"d" }}</span>
+                        <span class="month">{{ event.event_date|date:"M" }}</span>
+                    </div>
+                    {% endif %}
+                    <div class="event-content">
+                        <h5>{{ event.title }}</h5>
+                        <p class="text-muted mb-2">
+                            <i class="bi bi-calendar me-2"></i>{{ event.event_date|date:"d.m.Y H:i" }}
+                        </p>
+                        <p class="text-muted mb-2">
+                            <i class="bi bi-geo-alt me-2"></i>{{ event.location }}
+                        </p>
+                        <p class="mb-3">{{ event.description|truncatewords:20 }}</p>
+                        <a href="{% url 'library:event_detail' event.slug %}" class="btn btn-primary btn-sm">
+                            <i class="bi bi-info-circle me-2"></i>Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="empty-state">
+                    <i class="bi bi-calendar-x"></i>
+                    <h4>Нет запланированных мероприятий</h4>
+                    <p>Следите за обновлениями на нашем сайте</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+        <nav class="mt-5">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-chevron-left"></i></span>
+                </li>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-chevron-right"></i></span>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section bg-white">
+    <div class="container text-center">
+        <h2 class="mb-4">Хотите провести мероприятие?</h2>
+        <p class="lead mb-4">Библиотека предоставляет площадки для проведения культурных и образовательных мероприятий</p>
+        <a href="{% url 'library:contact' %}" class="btn btn-primary btn-lg">
+            <i class="bi bi-envelope me-2"></i>Связаться с нами
+        </a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты - Библиотека имени А. Лохути{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section">
+    <div class="container">
+        <h1>Контакты</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'library:home' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Контакты</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Contact Info Section -->
+<section class="section bg-white">
+    <div class="container">
+        <div class="section-title">
+            <h2>Свяжитесь с нами</h2>
+            <p>Мы всегда рады ответить на ваши вопросы</p>
+        </div>
+        
+        <div class="row g-4 mb-5">
+            <div class="col-lg-3 col-md-6">
+                <div class="contact-info-card">
+                    <i class="bi bi-geo-alt"></i>
+                    <h4>Адрес</h4>
+                    <p>г. Душанбе<br>проспект Рудаки<br>Республика Таджикистан</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="contact-info-card">
+                    <i class="bi bi-telephone"></i>
+                    <h4>Телефон</h4>
+                    <p>+992 (37) 221-XX-XX<br>+992 (37) 221-XX-XX<br>Факс: +992 (37) 221-XX-XX</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="contact-info-card">
+                    <i class="bi bi-envelope"></i>
+                    <h4>Email</h4>
+                    <p>info@lohuti-library.tj<br>director@lohuti-library.tj<br>support@lohuti-library.tj</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="contact-info-card">
+                    <i class="bi bi-clock"></i>
+                    <h4>Режим работы</h4>
+                    <p>Пн-Пт: 9:00 - 18:00<br>Суббота: 10:00 - 16:00<br>Воскресенье: выходной</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map and Form Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Map -->
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body p-0">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3119.174848!2d68.7735!3d38.5733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDM0JzIzLjkiTiA2OMKwNDYnMjQuNiJF!5e0!3m2!1sru!2stj!4v1234567890"
+                            width="100%" 
+                            height="500" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="col-lg-6">
+                <div class="contact-form">
+                    <h3 class="mb-4">Отправить сообщение</h3>
+                    <form id="contactForm" onsubmit="return submitForm(event)">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ваше имя *</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Тема *</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Сообщение *</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="bi bi-send me-2"></i>Отправить сообщение
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Departments Section -->
+<section class="section bg-white">
+    <div class="container">
+        <div class="section-title">
+            <h2>Отделы библиотеки</h2>
+            <p>Контактная информация по отделам</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-book me-2" style="color: var(--gold);"></i>
+                            Отдел комплектования
+                        </h5>
+                        <p class="card-text">Формирование книжного фонда, прием новых поступлений.</p>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="bi bi-telephone me-2"></i>+992 (37) 221-XX-XX</li>
+                            <li><i class="bi bi-envelope me-2"></i>acquisition@lohuti-library.tj</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-people me-2" style="color: var(--gold);"></i>
+                            Читальный зал
+                        </h5>
+                        <p class="card-text">Обслуживание читателей в читальном зале.</p>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="bi bi-telephone me-2"></i>+992 (37) 221-XX-XX</li>
+                            <li><i class="bi bi-envelope me-2"></i>reading@lohuti-library.tj</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-laptop me-2" style="color: var(--gold);"></i>
+                            Электронный отдел
+                        </h5>
+                        <p class="card-text">Доступ к электронным ресурсам и базам данных.</p>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="bi bi-telephone me-2"></i>+992 (37) 221-XX-XX</li>
+                            <li><i class="bi bi-envelope me-2"></i>digital@lohuti-library.tj</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-star me-2" style="color: var(--gold);"></i>
+                            Отдел редких книг
+                        </h5>
+                        <p class="card-text">Работа с редкими и ценными изданиями.</p>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="bi bi-telephone me-2"></i>+992 (37) 221-XX-XX</li>
+                            <li><i class="bi bi-envelope me-2"></i>rare@lohuti-library.tj</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-calendar-event me-2" style="color: var(--gold);"></i>
+                            Отдел мероприятий
+                        </h5>
+                        <p class="card-text">Организация культурных и просветительских мероприятий.</p>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="bi bi-telephone me-2"></i>+992 (37) 221-XX-XX</li>
+                            <li><i class="bi bi-envelope me-2"></i>events@lohuti-library.tj</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-question-circle me-2" style="color: var(--gold);"></i>
+                            Справочная служба
+                        </h5>
+                        <p class="card-text">Консультации и помощь в поиске информации.</p>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="bi bi-telephone me-2"></i>+992 (37) 221-XX-XX</li>
+                            <li><i class="bi bi-envelope me-2"></i>reference@lohuti-library.tj</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Social Media Section -->
+<section class="section bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4">Мы в социальных сетях</h2>
+        <p class="lead mb-4">Следите за новостями и обновлениями библиотеки</p>
+        <div class="d-flex justify-content-center gap-4">
+            <a href="#" class="btn btn-outline-primary btn-lg" style="width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="bi bi-facebook fs-4"></i>
+            </a>
+            <a href="#" class="btn btn-outline-primary btn-lg" style="width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="bi bi-instagram fs-4"></i>
+            </a>
+            <a href="#" class="btn btn-outline-primary btn-lg" style="width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="bi bi-telegram fs-4"></i>
+            </a>
+            <a href="#" class="btn btn-outline-primary btn-lg" style="width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="bi bi-youtube fs-4"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+function submitForm(event) {
+    event.preventDefault();
+    
+    // Получаем данные формы
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    
+    // Здесь можно добавить отправку на сервер
+    // Пока просто показываем alert
+    alert('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
+    
+    // Очищаем форму
+    event.target.reset();
+    
+    return false;
+}
+</script>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ author.get_full_name }} - Библиотека имени А. Лохути{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section">
+    <div class="container">
+        <h1>{{ author.get_full_name }}</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'library:home' %}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'library:author_list' %}">Авторы</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ author.get_full_name }}</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Author Detail Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <!-- Author Info -->
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="card">
+                    <div class="card-body text-center p-4">
+                        {% if author.photo %}
+                        <img src="{{ author.photo.url }}" alt="{{ author.get_full_name }}" class="rounded-circle mb-4" style="width: 200px; height: 200px; object-fit: cover;">
+                        {% else %}
+                        <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 200px; height: 200px;">
+                            <i class="bi bi-person text-muted" style="font-size: 5rem;"></i>
+                        </div>
+                        {% endif %}
+                        <h3 class="mb-2">{{ author.get_full_name }}</h3>
+                        {% if author.birth_year %}
+                        <p class="text-muted mb-3">
+                            <i class="bi bi-calendar me-2" style="color: var(--gold);"></i>
+                            {{ author.birth_year }}{% if author.death_year %} - {{ author.death_year }}{% endif %}
+                        </p>
+                        {% endif %}
+                        <p class="mb-0">
+                            <i class="bi bi-book me-2" style="color: var(--gold);"></i>
+                            <strong>{{ author.books.count }}</strong> книг в фонде
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Author Bio & Books -->
+            <div class="col-lg-8">
+                <!-- Biography -->
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <h4 class="mb-3">Биография</h4>
+                        {% if author.biography %}
+                        <p>{{ author.biography|linebreaks }}</p>
+                        {% else %}
+                        <p class="text-muted">Биография автора пока не добавлена.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Author's Books -->
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h4 class="mb-4">Книги автора</h4>
+                        {% if books %}
+                        <div class="row g-3">
+                            {% for book in books %}
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center p-3 border rounded">
+                                    {% if book.cover_image %}
+                                    <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" style="width: 60px; height: 80px; object-fit: cover;" class="me-3 rounded">
+                                    {% else %}
+                                    <div class="bg-light d-flex align-items-center justify-content-center me-3 rounded" style="width: 60px; height: 80px;">
+                                        <i class="bi bi-book text-muted"></i>
+                                    </div>
+                                    {% endif %}
+                                    <div>
+                                        <h6 class="mb-1">
+                                            <a href="{% url 'library:book_detail' book.slug %}" class="text-decoration-none">
+                                                {{ book.title|truncatewords:4 }}
+                                            </a>
+                                        </h6>
+                                        <small class="text-muted">{{ book.publication_year|default:"" }}</small>
+                                        <span class="book-status {% if book.is_available %}available{% else %}borrowed{% endif %} d-block mt-1">
+                                            {% if book.is_available %}В наличии{% else %}Выдана{% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <p class="text-muted">В фонде библиотеки пока нет книг этого автора.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

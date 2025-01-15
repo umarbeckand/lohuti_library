@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="hero" style="height: 400px;">
+    <img src="/static/images/reading-room.jpg" alt="Новости" class="hero-image">
+    <div class="hero-overlay"></div>
+    <div class="hero-content" style="padding-top: 120px;">
+        <span class="hero-badge">События</span>
+        <h2>Новости <span>библиотеки</span></h2>
+        <p>Будьте в курсе всех событий и мероприятий</p>
+    </div>
+</section>
+
+<!-- News Section -->
+<section class="section" style="background: var(--gray);">
+    <div class="section-container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-subtitle">Актуальное</span>
+            <h2 class="section-title">Последние <span>новости</span></h2>
+        </div>
+        
+        <div class="cards-grid">
+            {% for news in news_list %}
+            <div class="card animate-on-scroll">
+                <div class="card-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span class="card-date">{{ news.date }}</span>
+                        <span style="background: var(--gold); color: var(--dark); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 600;">{{ news.category }}</span>
+                    </div>
+                    <h3>{{ news.title }}</h3>
+                    <p>{{ news.excerpt }}</p>
+                    <a href="#" style="color: var(--gold); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; margin-top: 15px;">
+                        Читать далее <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Archive Section -->
+<section class="section">
+    <div class="section-container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-subtitle">Архив</span>
+            <h2 class="section-title">Архив <span>новостей</span></h2>
+        </div>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="animate-on-scroll" style="display: flex; gap: 20px; padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px; align-items: center;">
+                <div style="background: var(--gold); color: var(--dark); padding: 15px 25px; border-radius: 15px; text-align: center; min-width: 100px;">
+                    <div style="font-size: 32px; font-weight: 700;">05</div>
+                    <div style="font-size: 14px;">Фев</div>
+                </div>
+                <div>
+                    <h3 style="font-size: 22px; margin-bottom: 5px;">Премия за лучшую библиотеку года</h3>
+                    <p style="color: #666;">Библиотека получила престижную награду в номинации "Лучшая библиотека года"...</p>
+                </div>
+            </div>
+            
+            <div class="animate-on-scroll" style="display: flex; gap: 20px; padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px; align-items: center;">
+                <div style="background: var(--gold); color: var(--dark); padding: 15px 25px; border-radius: 15px; text-align: center; min-width: 100px;">
+                    <div style="font-size: 32px; font-weight: 700;">28</div>
+                    <div style="font-size: 14px;">Янв</div>
+                </div>
+                <div>
+                    <h3 style="font-size: 22px; margin-bottom: 5px;">Новогодний праздник для детей</h3>
+                    <p style="color: #666;">В детском отделе прошел новогодний утренник с подарками для юных читателей...</p>
+                </div>
+            </div>
+            
+            <div class="animate-on-scroll" style="display: flex; gap: 20px; padding: 25px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 20px; align-items: center;">
+                <div style="background: var(--gold); color: var(--dark); padding: 15px 25px; border-radius: 15px; text-align: center; min-width: 100px;">
+                    <div style="font-size: 32px; font-weight: 700;">15</div>
+                    <div style="font-size: 14px;">Янв</div>
+                </div>
+                <div>
+                    <h3 style="font-size: 22px; margin-bottom: 5px;">Пополнение фонда редкими книгами</h3>
+                    <p style="color: #666;">В фонд поступила коллекция редких изданий XVIII-XIX веков...</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> Загрузить еще
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section" style="background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%); color: white;">
+    <div class="section-container">
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;" class="animate-on-scroll">
+            <i class="fas fa-envelope" style="font-size: 50px; color: var(--gold); margin-bottom: 20px;"></i>
+            <h2 style="font-size: 36px; margin-bottom: 15px;">Подпишитесь на рассылку</h2>
+            <p style="opacity: 0.7; margin-bottom: 30px;">Получайте актуальные новости и анонсы мероприятий</p>
+            
+            <form style="display: flex; gap: 15px;">
+                <input type="email" placeholder="Введите ваш email" style="flex: 1; padding: 15px 25px; border: none; border-radius: 30px; font-size: 16px;">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Подписаться
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

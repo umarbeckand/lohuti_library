@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+
+{% block title %}Услуги - Библиотека имени А. Лохути{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section">
+    <div class="container">
+        <h1>Наши услуги</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'library:home' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Услуги</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Services Overview -->
+<section class="section bg-white">
+    <div class="container">
+        <div class="section-title">
+            <h2>Что мы предлагаем</h2>
+            <p>Широкий спектр услуг для всех категорий читателей</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <h4>Абонемент</h4>
+                    <p>Возможность получать книги на дом на определенный срок. Доступно для всех категорий читателей.</p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>До 5 книг одновременно</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Срок - 30 дней</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Возможность продления</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <h4>Читальный зал</h4>
+                    <p>Комфортные условия для работы с книгами и другими материалами непосредственно в библиотеке.</p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>200+ посадочных мест</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Бесплатный Wi-Fi</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Тихая атмосфера</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="bi bi-laptop"></i>
+                    </div>
+                    <h4>Электронный каталог</h4>
+                    <p>Удобный поиск книг в электронном каталоге с возможностью проверки наличия и резервирования.</p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Поиск по разным параметрам</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Проверка наличия онлайн</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Резервирование книг</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="bi bi-wifi"></i>
+                    </div>
+                    <h4>Wi-Fi зона</h4>
+                    <p>Бесплатный высокоскоростной доступ к интернету на всей территории библиотеки.</p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Высокая скорость</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Покрытие всего здания</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Бесплатно для читателей</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="bi bi-globe"></i>
+                    </div>
+                    <h4>Электронная библиотека</h4>
+                    <p>Доступ к электронным книгам, журналам и научным базам данных.</p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>10 000+ электронных книг</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Научные базы данных</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Доступ 24/7</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="bi bi-question-circle"></i>
+                    </div>
+                    <h4>Справочная служба</h4>
+                    <p>Профессиональная помощь в поиске информации и консультации библиографов.</p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Библиографические справки</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Помощь в поиске</li>
+                        <li><i class="bi bi-check-circle-fill me-2" style="color: var(--gold);"></i>Тематические подборки</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How to Become a Reader -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="mb-4">Как стать читателем</h2>
+                <p class="lead">Стать читателем библиотеки имени А. Лохути очень просто. Следуйте этим шагам:</p>
+                
+                <div class="timeline mt-4">
+                    <div class="timeline-item">
+                        <span class="timeline-year">Шаг 1</span>
+                        <h5>Приходите в библиотеку</h5>
+                        <p>Посетите библиотеку с паспортом или другим документом, удостоверяющим личность.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">Шаг 2</span>
+                        <h5>Заполните заявление</h5>
+                        <p>Заполните простую форму заявления на получение читательского билета.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">Шаг 3</span>
+                        <h5>Получите билет</h5>
+                        <p>Через несколько минут вы получите свой персональный читательский билет.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">Шаг 4</span>
+                        <h5>Пользуйтесь услугами</h5>
+                        <p>Теперь вы можете пользоваться всеми услугами библиотеки!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h4 class="mb-4">Необходимые документы</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill me-3" style="color: var(--gold);"></i>
+                                <div>
+                                    <strong>Паспорт</strong>
+                                    <p class="mb-0 text-muted">Для взрослых читателей</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill me-3" style="color: var(--gold);"></i>
+                                <div>
+                                    <strong>Свидетельство о рождении</strong>
+                                    <p class="mb-0 text-muted">Для детей до 14 лет</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill me-3" style="color: var(--gold);"></i>
+                                <div>
+                                    <strong>Фотография 3x4</strong>
+                                    <p class="mb-0 text-muted">1 штука</p>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill me-3" style="color: var(--gold);"></i>
+                                <div>
+                                    <strong>Студенческий билет</strong>
+                                    <p class="mb-0 text-muted">Для студентов (при наличии)</p>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <div class="alert alert-info mt-4 mb-0">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <strong>Важно:</strong> Услуги библиотеки предоставляются бесплатно. Единственное возможное взимание - штраф за просрочку возврата книг.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Rules Section -->
+<section class="section bg-white">
+    <div class="container">
+        <div class="section-title">
+            <h2>Правила пользования</h2>
+            <p>Основные правила для комфортного посещения библиотеки</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">
+                            <i class="bi bi-check-circle me-2" style="color: var(--gold);"></i>
+                            Разрешается
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <i class="bi bi-check-lg me-2 text-success"></i>
+                                Брать книги на абонемент или работать в читальном зале
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-lg me-2 text-success"></i>
+                                Пользоваться бесплатным Wi-Fi
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-lg me-2 text-success"></i>
+                                Приносить свой ноутбук и учебные материалы
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-lg me-2 text-success"></i>
+                                Фотографировать материалы (без вспышки)
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check-lg me-2 text-success"></i>
+                                Продлевать срок пользования книгами
+                            </li>
+                            <li>
+                                <i class="bi bi-check-lg me-2 text-success"></i>
+                                Заказывать книги заранее через электронный каталог
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">
+                            <i class="bi bi-x-circle me-2" style="color: #dc3545;"></i>
+                            Запрещается
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <i class="bi bi-x-lg me-2 text-danger"></i>
+                                Портить книги и другие материалы
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-x-lg me-2 text-danger"></i>
+                                Пренебрегать тишиной в читальных залах
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-x-lg me-2 text-danger"></i>
+                                Проносить еду и напитки в читальные залы
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-x-lg me-2 text-danger"></i>
+                                Оставлять личные вещи без присмотра
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-x-lg me-2 text-danger"></i>
+                                Просрочивать возврат книг
+                            </li>
+                            <li>
+                                <i class="bi bi-x-lg me-2 text-danger"></i>
+                                Передавать читательский билет другим лицам
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-title">
+            <h2>Часто задаваемые вопросы</h2>
+            <p>Ответы на популярные вопросы о библиотеке</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                Сколько книг можно взять на абонемент?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                На абонемент можно взять до 5 книг одновременно. Срок пользования - 30 дней с возможностью продления.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Какие документы нужны для получения читательского билета?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Для получения читательского билета необходим паспорт (или свидетельство о рождении для детей) и одна фотография 3x4.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Есть ли в библиотеке Wi-Fi?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Да, на всей территории библиотеки доступен бесплатный высокоскоростной Wi-Fi для всех читателей.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                Как продлить срок пользования книгой?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Продлить срок можно лично в библиотеке, по телефону или через личный кабинат на сайте, если на книгу нет очереди.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                Работает ли библиотека в выходные?
+                            </button>
+                        </h2>
+                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Библиотека работает с понедельника по субботу. Воскресенье - выходной день. В субботу режим работы сокращен: 10:00 - 16:00.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" style="background: linear-gradient(135deg, var(--navy) 0%, var(--primary-color) 100%);">
+    <div class="container text-center text-white">
+        <h2 class="mb-4" style="color: white;">Остались вопросы?</h2>
+        <p class="lead mb-4">Свяжитесь с нами любым удобным способом</p>
+        <a href="{% url 'library:contact' %}" class="btn btn-primary btn-lg">
+            <i class="bi bi-envelope me-2"></i>Связаться с нами
+        </a>
+    </div>
+</section>
+{% endblock %}

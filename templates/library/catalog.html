@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Каталог{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="hero" style="height: 400px;">
+    <img src="/static/images/books-shelf.jpg" alt="Каталог" class="hero-image">
+    <div class="hero-overlay"></div>
+    <div class="hero-content" style="padding-top: 120px;">
+        <span class="hero-badge">Поиск</span>
+        <h2>Электронный <span>каталог</span></h2>
+        <p>Поиск по фонду библиотеки имени Лохути</p>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section class="section" style="background: var(--gray); padding: 40px 0;">
+    <div class="section-container">
+        <div class="animate-on-scroll" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+            <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                <input type="text" placeholder="Введите название книги, автора или ключевое слово..." style="flex: 1; padding: 15px 25px; border: 2px solid #eee; border-radius: 30px; font-size: 16px; outline: none; transition: all 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='#eee'">
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i> Поиск
+                </button>
+            </div>
+            
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <select style="padding: 12px 20px; border: 2px solid #eee; border-radius: 25px; font-size: 14px; outline: none; cursor: pointer;">
+                    <option>Все категории</option>
+                    <option>Художественная литература</option>
+                    <option>Научная литература</option>
+                    <option>История</option>
+                    <option>Философия</option>
+                </select>
+                
+                <select style="padding: 12px 20px; border: 2px solid #eee; border-radius: 25px; font-size: 14px; outline: none; cursor: pointer;">
+                    <option>Все языки</option>
+                    <option>Таджикский</option>
+                    <option>Русский</option>
+                    <option>Английский</option>
+                </select>
+                
+                <select style="padding: 12px 20px; border: 2px solid #eee; border-radius: 25px; font-size: 14px; outline: none; cursor: pointer;">
+                    <option>Любой год</option>
+                    <option>2020-2026</option>
+                    <option>2010-2019</option>
+                    <option>2000-2009</option>
+                    <option>До 2000</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories -->
+<section class="section">
+    <div class="section-container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-subtitle">Разделы</span>
+            <h2 class="section-title">Категории <span>фонда</span></h2>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+            {% for cat in categories %}
+            <div class="animate-on-scroll" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.1)'">
+                <i class="fas fa-book" style="font-size: 40px; color: var(--gold); margin-bottom: 15px;"></i>
+                <h3 style="font-size: 18px; margin-bottom: 10px;">{{ cat.name }}</h3>
+                <p style="color: #666; font-size: 14px;">{{ cat.count }} книг</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Popular Books -->
+<section class="section" style="background: var(--gray);">
+    <div class="section-container">
+        <div class="section-header animate-on-scroll">
+            <span class="section-subtitle">Популярное</span>
+            <h2 class="section-title">Рекомендуемые <span>книги</span></h2>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+            {% for book in books %}
+            <div class="animate-on-scroll" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div style="height: 200px; background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%); display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-book" style="font-size: 80px; color: var(--gold); opacity: 0.5;"></i>
+                </div>
+                <div style="padding: 25px;">
+                    <span style="color: var(--gold); font-size: 12px; font-weight: 600;">{{ book.year }}</span>
+                    <h3 style="font-size: 22px; margin: 10px 0;">{{ book.title }}</h3>
+                    <p style="color: #666; margin-bottom: 15px;">{{ book.author }}</p>
+                    <button class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-plus"></i> В корзину
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px;">
+            <button class="btn btn-primary">
+                <i class="fas fa-book-open"></i> Показать все книги
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Rare Books -->
+<section class="section">
+    <div class="section-container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div class="animate-on-scroll">
+                <span class="section-subtitle">Редкие издания</span>
+                <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">Фонд <span>редких книг</span></h2>
+                <p style="color: #666; margin-bottom: 20px; line-height: 1.8;">
+                    В библиотеке хранится уникальная коллекция редких и ценных изданий, 
+                    включая рукописи, старопечатные книги и первые издания классических произведений.
+                </p>
+                <ul style="list-style: none; margin-bottom: 30px;">
+                    <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #666;">
+                        <i class="fas fa-check-circle" style="color: var(--gold);"></i>
+                        Рукописи XV-XIX веков
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #666;">
+                        <i class="fas fa-check-circle" style="color: var(--gold);"></i>
+                        Первые издания классиков
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #666;">
+                        <i class="fas fa-check-circle" style="color: var(--gold);"></i>
+                        Иллюминированные книги
+                    </li>
+                    <li style="display: flex; align-items: center; gap: 10px; color: #666;">
+                        <i class="fas fa-check-circle" style="color: var(--gold);"></i>
+                        Документы на пергаменте
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-arrow-right"></i> Подробнее о фонде
+                </a>
+            </div>
+            <div class="animate-on-scroll">
+                <img src="/static/images/rare-books.jpg" alt="Редкие книги" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

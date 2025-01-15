@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block title %}О библиотеке - Библиотека имени А. Лохути{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section">
+    <div class="container">
+        <h1>О библиотеке</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'library:home' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">О библиотеке</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- About Content -->
+<section class="section bg-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800" alt="Библиотека" class="img-fluid about-image">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mb-4">История библиотеки</h2>
+                <p class="lead">Библиотека имени А. Лохути - одно из крупнейших книгохранилищ Республики Таджикистан, имеющее богатую историю и традиции.</p>
+                <p>Библиотека была основана в середине XX века и на протяжении десятилетий служит центром культурной и просветительской деятельности в столице Республики Таджикистан - городе Душанбе.</p>
+                <p>В 1960 году библиотеке было присвоено имя выдающегося таджикского поэта, народного поэта Таджикистана А. Лохути, чье творчество стало неотъемлемой частью таджикской и мировой литературы.</p>
+                <div class="mt-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="text-primary">500 000+</h4>
+                            <p class="text-muted">Книг в фонде</p>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="text-primary">80+</h4>
+                            <p class="text-muted">Лет истории</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="mb-4">Наша миссия</h2>
+                <p class="lead">Сохранение и распространение культурного наследия, обеспечение свободного доступа к информации и знаниям для всех слоев населения.</p>
+            </div>
+        </div>
+        
+        <div class="row mt-5 g-4">
+            <div class="col-md-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="feature-icon mx-auto">
+                        <i class="bi bi-book-half"></i>
+                    </div>
+                    <h4>Сохранение наследия</h4>
+                    <p>Сохранение и пополнение книжного фонда, включая редкие и ценные издания.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="feature-icon mx-auto">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <h4>Доступ к знаниям</h4>
+                    <p>Обеспечение свободного доступа к информации для всех категорий граждан.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="feature-icon mx-auto">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+                    <h4>Просвещение</h4>
+                    <p>Проведение культурно-просветительских мероприятий и программ.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="section bg-white">
+    <div class="container">
+        <div class="section-title">
+            <h2>История развития</h2>
+            <p>Ключевые этапы становления библиотеки</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">1940-е годы</span>
+                        <h5>Основание библиотеки</h5>
+                        <p>Создание библиотеки в городе Сталинабад (ныне Душанбе) как центральной городской библиотеки.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1960 год</span>
+                        <h5>Присвоение имени А. Лохути</h5>
+                        <p>Библиотеке присвоено имя выдающегося таджикского поэта А. Лохути в честь его значительного вклада в развитие таджикской литературы.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1970-е годы</span>
+                        <h5>Расширение фонда</h5>
+                        <p>Значительное увеличение книжного фонда, создание специализированных отделов и читальных залов.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1990-е годы</span>
+                        <h5>Современизация</h5>
+                        <p>Внедрение компьютерных технологий, создание электронного каталога, оцифровка редких изданий.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">2000-е годы</span>
+                        <h5>Новое здание</h5>
+                        <p>Переезд в современное здание с просторными читальными залами и улучшенными условиями для читателей.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">2020-е годы</span>
+                        <h5>Цифровая трансформация</h5>
+                        <p>Создание электронной библиотеки, запуск онлайн-сервисов, расширение доступа к цифровым ресурсам.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-title">
+            <h2>Руководство</h2>
+            <p>Команда профессионалов библиотеки</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <i class="bi bi-person-circle" style="font-size: 5rem; color: var(--gold);"></i>
+                        </div>
+                        <h5 class="card-title">Директор библиотеки</h5>
+                        <p class="text-muted mb-3">Главный библиотекарь</p>
+                        <p class="card-text">Руководство деятельностью библиотеки, развитие стратегических направлений.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <i class="bi bi-person-circle" style="font-size: 5rem; color: var(--gold);"></i>
+                        </div>
+                        <h5 class="card-title">Заместитель директора</h5>
+                        <p class="text-muted mb-3">По научной работе</p>
+                        <p class="card-text">Координация научной и методической деятельности библиотеки.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <i class="bi bi-person-circle" style="font-size: 5rem; color: var(--gold);"></i>
+                        </div>
+                        <h5 class="card-title">Заместитель директора</h5>
+                        <p class="text-muted mb-3">По работе с фондом</p>
+                        <p class="card-text">Управление книжным фондом, комплектование и обработка изданий.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="section bg-white">
+    <div class="container">
+        <div class="section-title">
+            <h2>Наши партнеры</h2>
+            <p>Организации, с которыми мы сотрудничаем</p>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="card text-center p-4 h-100">
+                    <i class="bi bi-building" style="font-size: 3rem; color: var(--primary-color);"></i>
+                    <h6 class="mt-3">Министерство культуры РТ</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="card text-center p-4 h-100">
+                    <i class="bi bi-book" style="font-size: 3rem; color: var(--primary-color);"></i>
+                    <h6 class="mt-3">Национальная библиотека РТ</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="card text-center p-4 h-100">
+                    <i class="bi bi-mortarboard" style="font-size: 3rem; color: var(--primary-color);"></i>
+                    <h6 class="mt-3">Таджикский НУ</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="card text-center p-4 h-100">
+                    <i class="bi bi-globe" style="font-size: 3rem; color: var(--primary-color);"></i>
+                    <h6 class="mt-3">ЮНЕСКО</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" style="background: linear-gradient(135deg, var(--navy) 0%, var(--primary-color) 100%);">
+    <div class="container text-center text-white">
+        <h2 class="mb-4" style="color: white;">Узнайте больше о наших услугах</h2>
+        <p class="lead mb-4">Мы предлагаем широкий спектр услуг для всех категорий читателей</p>
+        <a href="{% url 'library:services' %}" class="btn btn-primary btn-lg">
+            <i class="bi bi-grid-3x3-gap me-2"></i>Наши услуги
+        </a>
+    </div>
+</section>
+{% endblock %}

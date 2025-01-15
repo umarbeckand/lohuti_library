@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+
+{% block title %}Библиотека имени А. Лохути - Главная{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container text-center">
+        <h1 class="hero-title">Библиотека имени А. Лохути</h1>
+        <p class="hero-subtitle">Одна из старейших и крупнейших библиотек Республики Таджикистан</p>
+        
+        <div class="hero-search">
+            <form action="{% url 'library:book_list' %}" method="get">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Поиск книг, авторов..." aria-label="Поиск">
+                    <button class="btn" type="submit">
+                        <i class="bi bi-search me-2"></i>Найти
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="mt-4">
+            <a href="{% url 'library:book_list' %}" class="btn btn-outline-light btn-lg me-3">
+                <i class="bi bi-book me-2"></i>Каталог книг
+            </a>
+            <a href="{% url 'library:about' %}" class="btn btn-primary btn-lg">
+                <i class="bi bi-info-circle me-2"></i>О библиотеке
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6 mb-4 mb-md-0">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="500000">0</div>
+                    <div class="stat-label">Книг в фонде</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4 mb-md-0">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50000">0</div>
+                    <div class="stat-label">Читателей</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="80">0</div>
+                    <div class="stat-label">Лет истории</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label">Часа доступа</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="section bg-white">
+    <div class="container">
+        <div class="section-title">
+            <h2>Наши услуги</h2>
+            <p>Библиотека имени А. Лохути предоставляет широкий спектр услуг для всех категорий читателей</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <h4>Книговыдача</h4>
+                    <p>Возможность получить книги на дом или работать с ними в читальном зале. Доступно более 500 000 изданий.</p>
+                    <a href="{% url 'library:services' %}" class="btn btn-outline-primary mt-3">Подробнее</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-wifi"></i>
+                    </div>
+                    <h4>Wi-Fi зона</h4>
+                    <p>Бесплатный высокоскоростной доступ к интернету на всей территории библиотеки для всех посетителей.</p>
+                    <a href="{% url 'library:services' %}" class="btn btn-outline-primary mt-3">Подробнее</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-laptop"></i>
+                    </div>
+                    <h4>Электронный каталог</h4>
+                    <p>Удобный поиск книг в электронном каталоге. Проверка наличия и возможность зарезервировать издание.</p>
+                    <a href="{% url 'library:book_list' %}" class="btn btn-outline-primary mt-3">Подробнее</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <h4>Читальные залы</h4>
+                    <p>Современные читальные залы с комфортными условиями для работы и учебы. Тихая атмосфера.</p>
+                    <a href="{% url 'library:services' %}" class="btn btn-outline-primary mt-3">Подробнее</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-calendar-event"></i>
+                    </div>
+                    <h4>Мероприятия</h4>
+                    <p>Регулярно проводим литературные вечера, презентации книг, встречи с писателями и поэтами.</p>
+                    <a href="{% url 'library:events_list' %}" class="btn btn-outline-primary mt-3">Подробнее</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-globe"></i>
+                    </div>
+                    <h4>Электронная библиотека</h4>
+                    <p>Доступ к электронным книгам и научным базам данных. Чтение онлайн и скачивание.</p>
+                    <a href="{% url 'library:services' %}" class="btn btn-outline-primary mt-3">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- New Books Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-title">
+            <h2>Новые поступления</h2>
+            <p>Свежие книги в нашем фонде</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for book in latest_books %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card book-card h-100">
+                    <div class="card-img-wrapper">
+                        {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" class="card-img-top" alt="{{ book.title }}">
+                        {% else %}
+                        <div class="d-flex align-items-center justify-content-center h-100 bg-light">
+                            <i class="bi bi-book text-muted" style="font-size: 4rem;"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="book-author">
+                            {% for author in book.authors.all %}
+                                {{ author.get_full_name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                        <span class="book-status {% if book.is_available %}available{% else %}borrowed{% endif %}">
+                            {% if book.is_available %}
+                                <i class="bi bi-check-circle me-1"></i>В наличии
+                            {% else %}
+                                <i class="bi bi-x-circle me-1"></i>Выдана
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'library:book_detail' book.slug %}" class="btn btn-primary btn-sm w-100">
+                            <i class="bi bi-eye me-2"></i>Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="empty-state">
+                    <i class="bi bi-inbox"></i>
+                    <h4>Пока нет новых книг</h4>
+                    <p>Загляните позже или посмотрите полный каталог</p>
+                    <a href="{% url 'library:book_list' %}" class="btn btn-primary mt-3">
+                        <i class="bi bi-book me-2"></i>Все книги
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'library:book_list' %}" class="btn btn-primary btn-lg">
+                <i class="bi bi-grid-3x3-gap me-2"></i>Все книги
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- News Section -->
+<section class="section bg-white">
+    <div class="container">
+        <div class="section-title">
+            <h2>Новости библиотеки</h2>
+            <p>Последние события и announcements</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for news in latest_news %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card news-card h-100">
+                    {% if news.image %}
+                    <img src="{{ news.image.url }}" class="card-img-top" alt="{{ news.title }}">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center">
+                        <i class="bi bi-newspaper text-muted" style="font-size: 3rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="news-date">
+                            <i class="bi bi-calendar3 me-2"></i>{{ news.published_at|date:"d.m.Y" }}
+                        </div>
+                        <h5 class="card-title">{{ news.title }}</h5>
+                        <p class="card-text">{{ news.content|truncatewords:20 }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'library:news_detail' news.slug %}" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-arrow-right me-2"></i>Читать далее
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="empty-state">
+                    <i class="bi bi-newspaper"></i>
+                    <h4>Пока нет новостей</h4>
+                    <p>Следите за обновлениями</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'library:news_list' %}" class="btn btn-outline-primary btn-lg">
+                <i class="bi bi-newspaper me-2"></i>Все новости
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Events Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-title">
+            <h2>Ближайшие мероприятия</h2>
+            <p>Приглашаем принять участие</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for event in upcoming_events %}
+            <div class="col-lg-6">
+                <div class="card event-card">
+                    <div class="event-date-box">
+                        <span class="day">{{ event.event_date|date:"d" }}</span>
+                        <span class="month">{{ event.event_date|date:"M" }}</span>
+                    </div>
+                    <div class="event-content">
+                        <h5>{{ event.title }}</h5>
+                        <p class="text-muted mb-2">
+                            <i class="bi bi-geo-alt me-2"></i>{{ event.location }}
+                        </p>
+                        <p class="mb-3">{{ event.description|truncatewords:15 }}</p>
+                        <a href="{% url 'library:event_detail' event.slug %}" class="btn btn-primary btn-sm">
+                            <i class="bi bi-info-circle me-2"></i>Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="empty-state">
+                    <i class="bi bi-calendar-x"></i>
+                    <h4>Нет запланированных мероприятий</h4>
+                    <p>Следите за обновлениями на нашем сайте</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'library:events_list' %}" class="btn btn-primary btn-lg">
+                <i class="bi bi-calendar-event me-2"></i>Все мероприятия
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" style="background: linear-gradient(135deg, var(--navy) 0%, var(--primary-color) 100%);">
+    <div class="container text-center text-white">
+        <h2 class="mb-4" style="color: white;">Станьте читателем библиотеки</h2>
+        <p class="lead mb-4">Зарегистрируйтесь и получите доступ к огромному фонду книг и ресурсов</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="{% url 'library:services' %}" class="btn btn-primary btn-lg">
+                <i class="bi bi-person-plus me-2"></i>Как стать читателем
+            </a>
+            <a href="{% url 'library:contact' %}" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-telephone me-2"></i>Связаться с нами
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
