@@ -161,3 +161,5 @@ def contact(request):
 def services(request):
     """Страница услуг"""
     return render(request, 'library/services.html')
+    
+  
